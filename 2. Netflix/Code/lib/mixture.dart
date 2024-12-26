@@ -1,0 +1,114 @@
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/material.dart';
+import 'package:niranjanauth/product.dart';
+
+import 'BotNavi.dart';
+class mixtureslider extends StatefulWidget {
+  const mixtureslider({super.key,});
+
+  @override
+  State<mixtureslider> createState() => _moviesState();
+}
+
+class _moviesState extends State<mixtureslider> {
+  @override
+  List mixture = [
+    "assets/vinlandsaga.png",
+    "assets/breakingbad.png",
+    "assets/howimetyourmother.png",
+    "assets/onepiece.png",
+    "assets/theboys.png",
+    "assets/anbesivam.png",
+    "assets/friends.png",
+    "assets/vidamuyarchi.png",
+    "assets/naruto.png",
+    "assets/gameofthrones.png",
+    "assets/strangerthings.png",
+    "assets/dragonballz.png",
+    "assets/pariyerum.png",
+    "assets/nayakan.png",
+    "assets/vadachennai.png",
+    "assets/kon.png",
+    "assets/96.png",
+    "assets/peakyblinders.png",
+    "assets/demonslayer.png",
+    "assets/anniyan.png",
+    "assets/maharaja.png",
+    "assets/bettercallsaul.png",
+    "assets/theoffice.png",
+    "assets/berserk.png",
+    "assets/aayirathil.png",
+    "assets/dailylives.png",
+    "assets/moneyheist.png",
+    "assets/gintama.png",
+    "assets/aot.png",
+  ];
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      appBar: AppBar(
+        backgroundColor :Colors.black,
+
+        leading:GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const BotNavi()),
+              );
+            },
+            child: Icon(Icons.arrow_back,color: Colors.white,)),
+        actions: [
+          Icon(Icons.file_download_outlined,color: Colors.white,),
+          SizedBox(width: 20),
+          Icon(Icons.search,color: Colors.white,)
+        ],
+      ),
+
+      body : Column(
+        children: [
+          SizedBox(height: 10),
+          Text("Pick your picks !",style: TextStyle(fontSize: 25,color: Colors.white,fontWeight: FontWeight.bold),),
+          SizedBox(height: 20,),
+
+          GestureDetector(
+            onTap: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const product()),
+              );
+            },
+            child: Container(
+              height: 590,
+              width: 412,
+              child: CarouselSlider.builder(
+                options:  CarouselOptions(
+                  enlargeCenterPage: true,
+                  autoPlay: true,
+                  aspectRatio: 9 / 16,
+                  autoPlayCurve: Curves.fastOutSlowIn,
+                  enableInfiniteScroll: true,
+                  autoPlayAnimationDuration: Duration(milliseconds: 800),
+                  viewportFraction: 1,
+                ),
+                itemCount: mixture.length,
+                itemBuilder: (BuildContext context, int index, int realIndex)
+                {
+                  return Container(
+                    height: 500,
+                    width: 370,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      image: DecorationImage(image: AssetImage(mixture
+                      [index]),
+                          fit: BoxFit.fill ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
